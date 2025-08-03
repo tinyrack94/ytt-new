@@ -1,5 +1,9 @@
-import { preferencesStore } from "@/stores/preferences";
-import { useStore } from "@nanostores/react";
+import { useStore } from '@nanostores/react';
+import { preferencesStore } from '@/stores/preferences';
+
+export type YTTAppProps = {
+  language: string;
+};
 
 export function YTTApp() {
   const preferences = useStore(preferencesStore);

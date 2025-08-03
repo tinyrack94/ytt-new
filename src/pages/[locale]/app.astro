@@ -1,7 +1,7 @@
 ---
-import YTTApp from "@/routes/App.astro";
-import Layout from "@/layouts/Layout.astro";
-import { SUPPORTED_LANGUAGES } from "@/constants";
+import YTTApp from '@/routes/App.astro';
+import Layout from '@/layouts/Layout.astro';
+import { SUPPORTED_LANGUAGES } from '@/constants';
 
 export async function getStaticPaths() {
   return Object.values(SUPPORTED_LANGUAGES).map((locale) => ({

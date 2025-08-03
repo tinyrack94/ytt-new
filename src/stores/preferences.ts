@@ -1,9 +1,9 @@
-import { persistentMap } from "@nanostores/persistent";
+import { persistentMap } from '@nanostores/persistent';
 
 export const OPEN_AI_MODELS = {
-  GPT_4_O: "gpt-4o",
-  GPT_4_O_MINI: "gpt-4o-mini",
-  CUSTOM: "custom",
+  GPT_4_O: 'gpt-4o',
+  GPT_4_O_MINI: 'gpt-4o-mini',
+  CUSTOM: 'custom',
 } as const;
 
 export type OpenAIModel = (typeof OPEN_AI_MODELS)[keyof typeof OPEN_AI_MODELS];
@@ -44,13 +44,13 @@ export type PreferencesStore = {
 };
 
 export const preferencesStore = persistentMap<PreferencesStore>(
-  "preferences:",
+  'preferences:',
   {
-    openAIEndpoint: "https://api.openai.com/v1/chat/completions",
-    openAIApiKey: "",
+    openAIEndpoint: 'https://api.openai.com/v1/chat/completions',
+    openAIApiKey: '',
     model: OPEN_AI_MODELS.GPT_4_O,
     prompt:
-      "For currency, change it to the local currency based on the exchange rate.",
-    baseLangCode: "en",
+      'For currency, change it to the local currency based on the exchange rate.',
+    baseLangCode: 'en',
   },
 );

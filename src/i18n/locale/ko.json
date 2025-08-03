@@ -1,1 +1,5 @@
-{}
+{
+  "app.name": "타이니랙 툴박스",
+  "app.nav.home": "홈",
+  "app.nav.app": "앱"
+}
