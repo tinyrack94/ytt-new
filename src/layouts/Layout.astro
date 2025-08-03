@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { DEFAULT_LOCALE } from "@/../astro.config.mjs";
+import { DEFAULT_LANGUAGE } from "@/constants";
 
-const currentLocale = Astro.currentLocale ?? DEFAULT_LOCALE;
+const currentLocale = Astro.currentLocale ?? DEFAULT_LANGUAGE.CODE;
 const INDEX_URL = getRelativeLocaleUrl(currentLocale, "");
 const APP_URL = getRelativeLocaleUrl(currentLocale, "app");
 ---
