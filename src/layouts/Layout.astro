@@ -1,5 +1,11 @@
 ---
 import "../styles/global.css";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { DEFAULT_LOCALE } from "@/../astro.config.mjs";
+
+const currentLocale = Astro.currentLocale ?? DEFAULT_LOCALE;
+const INDEX_URL = getRelativeLocaleUrl(currentLocale, "");
+const APP_URL = getRelativeLocaleUrl(currentLocale, "app");
 ---
 
 <!doctype html>
@@ -7,11 +13,16 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <!-- <meta http-equiv="refresh" content="0;url=/en/" /> -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>YTT</title>
   </head>
   <body class="w-full h-dvh">
+    <div class="flex">
+      <a href={INDEX_URL}>홈</a>
+      <a href={APP_URL}>앱</a>
+    </div>
     <slot />
   </body>
 </html>
