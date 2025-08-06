@@ -2,6 +2,7 @@
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import reactI18next from 'astro-react-i18next';
 import { defineConfig } from 'astro/config';
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from './src/constants';
 
@@ -9,6 +10,10 @@ import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from './src/constants';
 export default defineConfig({
   site: 'https://toolbox.tinyrack.net',
   output: 'static',
+
+  build: {
+    format: 'directory',
+  },
 
   i18n: {
     locales: Object.values(SUPPORTED_LANGUAGES).map((lang) => lang.CODE),
@@ -20,7 +25,15 @@ export default defineConfig({
   },
 
   integrations: [
-    react(),
+    react({
+      experimentalReactChildren: true,
+    }),
+    reactI18next({
+      locales: Object.values(SUPPORTED_LANGUAGES).map((lang) => lang.CODE),
+      defaultLocale: DEFAULT_LANGUAGE.CODE,
+      prefixDefaultLocale: true,
+      localesDir: './locales',
+    }),
     sitemap({
       i18n: {
         locales: Object.values(SUPPORTED_LANGUAGES).reduce((acc, language) => {

@@ -1,18 +1,19 @@
 ---
-import '../styles/global.css';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import { DEFAULT_LANGUAGE } from '@/constants';
-import { useTranslations } from '@/i18n/utils';
-import LanguageSelector from '@/components/language-selector';
+import { LanguageSelector } from '@/components/language-selector';
+import { SUPPORTED_LANGUAGES } from '@/constants';
+import '@/styles/global.css';
+import i18n from 'i18next';
 
-const currentLocale = Astro.currentLocale ?? DEFAULT_LANGUAGE.CODE;
-const INDEX_URL = getRelativeLocaleUrl(currentLocale, '');
-const APP_URL = getRelativeLocaleUrl(currentLocale, 'app');
-const t = useTranslations(currentLocale);
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props || i18n.t('site.title');
+const currentLocale = i18n.language;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={i18n.language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -20,17 +21,20 @@ const t = useTranslations(currentLocale);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <meta name="generator" content={Astro.generator} />
-    <title>YTT</title>
+    <title>{title}</title>
   </head>
   <body class="h-dvh w-full">
-    <div class="flex flex-1 justify-between p-2">
-      <h1 class="font-bold">{t('app.name')}</h1>
-      <div class="flex gap-2">
-        <a href={INDEX_URL}>{t('app.nav.home')}</a>
-        <a href={APP_URL}>{t('app.nav.app')}</a>
-        <LanguageSelector client:idle />
-      </div>
+    <nav class="flex">
+      {
+        i18n.languages.map((lang) => {
+          const href = `/${lang}/`;
+          return <a href={href}>{lang}</a>;
+        })
+      }
+      <LanguageSelector client:only="react" />
+    </nav>
+    <div class="flex-1">
+      <slot />
     </div>
-    <slot />
   </body>
 </html>

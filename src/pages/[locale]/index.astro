@@ -1,14 +1,10 @@
 ---
 import Home from '@/routes/Home.astro';
 import Layout from '@/layouts/Layout.astro';
-import { SUPPORTED_LANGUAGES } from '@/constants';
+import { buildStaticPaths } from 'astro-react-i18next/utils';
 
 export async function getStaticPaths() {
-  return Object.values(SUPPORTED_LANGUAGES).map((locale) => ({
-    params: {
-      locale: locale.CODE,
-    },
-  }));
+  return buildStaticPaths();
 }
 ---
 

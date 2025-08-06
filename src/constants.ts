@@ -1,4 +1,4 @@
-export const SUPPORTED_LANGUAGE = ["KOREAN", "ENGLISH"] as const;
+export const SUPPORTED_LANGUAGE = ['KOREAN', 'ENGLISH'] as const;
 
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGE)[number];
 
@@ -10,14 +10,14 @@ export const SUPPORTED_LANGUAGES: {
   };
 } = {
   KOREAN: {
-    NAME: "한국어",
-    CODE: "ko",
-    LOCALE: "ko-KR",
+    NAME: '한국어',
+    CODE: 'ko',
+    LOCALE: 'ko-KR',
   },
   ENGLISH: {
-    NAME: "English",
-    CODE: "en",
-    LOCALE: "en-US",
+    NAME: 'English',
+    CODE: 'en',
+    LOCALE: 'en-US',
   },
 } as const;
 
